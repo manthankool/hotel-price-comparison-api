@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import re
 def jag(city):
     l=list()
     search =city + "hotels tripadvisor"
