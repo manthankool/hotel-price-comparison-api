@@ -14,4 +14,4 @@ def jag(city):
             l.append(link.get('href').split("?q=")[1].split("&sa=U")[0])
     return(l[3])
 
-print(jag("jaipur"))
+
