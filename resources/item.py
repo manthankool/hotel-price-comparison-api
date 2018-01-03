@@ -11,7 +11,7 @@ class Item(Resource):
     @jwt_required()
     def get(self,city):
 
-        url=place.search(city)
+        url=place.jag(city)
         resp=requests.get(url)
         respdata=resp.text
 
