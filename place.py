@@ -6,8 +6,8 @@ def jag(city):
     search =city + "hotels tripadvisor"
     results = 1 # valid options 10, 20, 30, 40, 50, and 100
     page = requests.get("https://www.google.com/search?q={}&num={}".format(search, results))
-    soup = BeautifulSoup(page.content, "html5lib")
-    links = soup.findAll("a")
+    soup = BeautifulSoup(page.content, "html.parser")
+    links = soup.find_all("a")
     for link in links :
         link_href = link.get('href')
         if "url?q=" in link_href and not "webcache" in link_href:
