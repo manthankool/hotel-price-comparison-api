@@ -39,13 +39,13 @@ class Item(Resource):
 
             j=item.find("div",{"class":"price-wrap"})
             try:
-                l["Best-price"]=j.text.replace("₹"," -₹")
+                l["Best-price"]=j.text.replace("$"," -$")
             except:
                 l["Best-price"]=None
 
 
             try:
-                l["vendor1"]=item.find_all("div",{"class":"no_cpu offer text-link "})[0].text.replace("₹"," -₹")
+                l["vendor1"]=item.find_all("div",{"class":"no_cpu offer text-link "})[0].text.replace("$"," -$")
 
             except:
                 l["vendor1"]=None
@@ -53,7 +53,7 @@ class Item(Resource):
 
 
             try:
-                l["vendor2"]=item.find_all("div",{"class":"no_cpu offer text-link "})[1].text.replace("₹"," -₹")
+                l["vendor2"]=item.find_all("div",{"class":"no_cpu offer text-link "})[1].text.replace("$"," -$")
 
             except:
                 l["vendor2"]=None
@@ -61,7 +61,7 @@ class Item(Resource):
 
 
             try:
-                l["vendor3"]=item.find_all("div",{"class":"no_cpu offer text-link "})[2].text.replace("₹"," -₹")
+                l["vendor3"]=item.find_all("div",{"class":"no_cpu offer text-link "})[2].text.replace("$"," -$")
 
             except:
                 l["vendor3"]=None
