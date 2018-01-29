@@ -38,7 +38,7 @@ limiter = Limiter(
 def create_tables():
     db.create_all()
 jwt = JWT(app , authenticate , identity)
-fjwt = JWT(app, auth, ident)
+
 
 
 from resources.item import Item
