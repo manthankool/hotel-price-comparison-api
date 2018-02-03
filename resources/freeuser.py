@@ -26,10 +26,10 @@ class FreeUserRegister(Resource):
     def post(self):
         data = FreeUserRegister.parser.parse_args()
 
-        if FreeUserModel.find_by_username(data['username']):
-            return {"message": "A user with that username already exists"}, 400
+        if FreeUserModel.find_by_email(data['email']) or FreeUserModel.find_by_username(data['username']):
+            return {"message": "A user with that email or username already exists"}, 400
 
         user = FreeUserModel(data['username'],data['email'],data['password'])
         user.save_to_db()
 
-        return {"message": "User created successfully.Confirm your email"}, 201
+        return '<h1> Hey, welcome to MakCorps, Hope we can change the world together </h1>',201
