@@ -4,13 +4,14 @@ from flask_limiter.util import get_remote_address
 from werkzeug.contrib.fixers import ProxyFix
 
 
-
+from datetime import timedelta
 from flask import Flask
 from flask_restful import  Api
 from flask_jwt import JWT
 
+
 from security import authenticate , identity
-from fsecurity import auth , ident
+
 from resources.user import UserRegister
 from resources.freeuser import FreeUserRegister
 
@@ -37,9 +38,10 @@ limiter = Limiter(
 @app.before_first_request
 def create_tables():
     db.create_all()
+
+
+app.config['JWT_EXPIRATION_DELTA'] = timedelta(minutes=30)
 jwt = JWT(app , authenticate , identity)
-
-
 
 from resources.item import Item
 from resources.free import FreeItem
@@ -48,8 +50,6 @@ api.add_resource(Item , '/item/<string:city>')
 api.add_resource(FreeItem , '/free/<string:city>')
 api.add_resource(FreeUserRegister, '/freeregister')
 api.add_resource(UserRegister, '/register')
-
-
 
 
 from db import db
@@ -62,4 +62,4 @@ if __name__ == '__main__':
         def create_tables():
             db.create_all()
 
-app.run(port=5000)
+    app.run(port=5000,debug=True)
