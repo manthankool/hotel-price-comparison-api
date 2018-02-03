@@ -1,16 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
+import re
+
 def jag(city):
-    l=list()
-    search =city + "hotels tripadvisor"
-    results = 1 # valid options 10, 20, 30, 40, 50, and 100
-    page = requests.get("https://www.google.com/search?q={}&num={}".format(search, results))
-    soup = BeautifulSoup(page.content, "html.parser")
-    links = soup.find_all("a")
-    for link in links :
-        link_href = link.get('href')
-        if "url?q=" in link_href and not "webcache" in link_href:
-            l.append(link.get('href').split("?q=")[1].split("&sa=U")[0])
-    return(l[3])
-
-
+    search = city +"hotels tripadvisor"
+    results=100
+    page = requests.get("https://www.google.co.in/search?q={}".format(search))
+    soup = BeautifulSoup(page.text, "html.parser")
+    all=soup.find("div",{"id":"res"})
+    j=all.find("a",{"class":"_Zkb"})
+    d=str(j)[99:200]
+    d = d.replace("%","").replace("hotels","")
+    return(d)
